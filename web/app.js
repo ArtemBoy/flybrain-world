@@ -46,8 +46,8 @@ function setMeters(action){
 }
 
 function act(action){
-  if(action==="LEFT") heading+=.12;
-  if(action==="RIGHT") heading-=.12;
+  if(action==="LEFT") heading-=.12;
+  if(action==="RIGHT") heading+=.12;
   if(action==="FORWARD"){
     agent.position.x+=Math.sin(heading)*.12;
     agent.position.z-=Math.cos(heading)*.12;
