@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FlyBrain World</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main>
+    <section id="world">
+      <div id="hud">
+        <strong>FlyBrain World v0.2</strong>
+        <span>Mode: <b id="mode">HUMAN</b></span>
+        <span>Distance: <b id="distance">—</b></span>
+      </div>
+      <canvas id="canvas"></canvas>
+      <div id="help">W/↑ forward · A/← left · D/→ right · B brain · H human · R reset</div>
+    </section>
+    <aside>
+      <h2>Brain interface</h2>
+      <p id="brain-status">Human control — no brain output.</p>
+      <div class="signal"><span>LEFT</span><meter id="left" min="0" max="1" value="0"></meter></div>
+      <div class="signal"><span>FORWARD</span><meter id="forward" min="0" max="1" value="0"></meter></div>
+      <div class="signal"><span>RIGHT</span><meter id="right" min="0" max="1" value="0"></meter></div>
+      <hr>
+      <p class="warning"><b>Scientific status:</b> ToyBrain is an engineering test, not a biological fly brain.</p>
+      <button id="toggle">Switch to BRAIN</button>
+      <button id="reset">New target</button>
+    </aside>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
