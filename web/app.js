@@ -58,8 +58,17 @@ function act(action){
 
 async function brainStep(){
   if(brainRequestPending || mode!=="BRAIN") return;
+
+  const currentDistance=distance();
+  if(currentDistance<=0.45){
+    setMeters(null);
+    document.querySelector("#brain-status").textContent=
+      `TARGET REACHED · distance ${currentDistance.toFixed(2)}`;
+    return;
+  }
+
   brainRequestPending=true;
-  const sensory={bearing:bearing(),distance:distance()};
+  const sensory={bearing:bearing(),distance:currentDistance};
 
   try{
     const response=await fetch("/api/act",{
