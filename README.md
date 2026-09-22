@@ -2,20 +2,46 @@
 
 An embodied connectome experiment: **can a fruit-fly connectome acquire a simple human-style skill and transfer it to a novel situation?**
 
+## Current milestone — v0.3
+
+The browser is now the **world and visualization layer only**. In BRAIN mode it sends sensory state to the local Python server:
+
+```text
+3D world → bearing + distance → Python BrainController → action → 3D world
+```
+
+The current Python controller is still `ToyBrain`, an engineering smoke test. There is **no decision policy in JavaScript**. This is the execution path that a future `FlyWireBrain` will replace.
+
+> **Scientific status:** `ToyBrain` is not a biological fly-brain result. The API explicitly reports `biological: false`.
+
+## Run
+
+```bash
+python serve.py
+```
+
+Then open the URL printed by the server (normally `http://localhost:8765`).
+
+Optional port:
+
+```bash
+python serve.py --port 9000
+```
+
+If Windows blocks the requested port, the server chooses a free local port and prints it.
+
+Use **W/A/D** or arrow keys in HUMAN mode, **B** for BRAIN mode, **H** for HUMAN mode, and **R** for a new target.
+
 ## Experiment 001 — Approach an object
 
-The first milestone is intentionally small. A simulated agent senses only target bearing and distance. A swappable brain controller produces `LEFT`, `FORWARD`, or `RIGHT`; the world then feeds the next sensory state back to the controller.
+A simulated agent senses only target bearing and distance. A swappable Python brain controller produces `LEFT`, `FORWARD`, or `RIGHT`; the world feeds the next sensory state back to the controller.
 
-> **Scientific status:** the initial `ToyBrain` is an engineering smoke test, **not a biological fly-brain result**. The real FlyWire connectome will enter through the same `BrainController` interface.
-
-## Run v0.1
+The command-line experiment remains available:
 
 ```bash
 python -m experiments.experiment_001
 python -m experiments.experiment_001 --seed 42
 ```
-
-No third-party packages are required yet.
 
 ## What counts as success
 
@@ -27,27 +53,16 @@ No third-party packages are required yet.
 
 ## Roadmap
 
-- **v0.1** — toy closed-loop controller (current)
-- **v0.2** — visual world + human `PLAY` baseline
-- **v0.3** — FlyWire connectome adapter
-- **v0.4** — reward / biologically motivated plasticity
-- **v0.5** — movable object + target zone
+- **v0.1** — toy closed-loop controller ✓
+- **v0.2** — visual world + human PLAY baseline ✓
+- **v0.3** — authoritative Python brain execution ✓
+- **v0.4** — FlyWire connectome adapter
+- **v0.5** — reward / biologically motivated plasticity
+- **v0.6** — movable object + target zone
 - **v1.0** — frozen-learning generalization and compositional-transfer experiments
 
-Long-term embodiment target: FlyGym 2.x. Connectome data will be pinned to a specific FlyWire/Codex snapshot with provenance and checksums.
+Long-term embodiment target: FlyGym. Connectome data will be pinned to a specific FlyWire/Codex snapshot with provenance and checksums.
 
 ## Core research question
 
-After learning separate object and destination relationships, can the connectome-driven agent execute a **novel combination it was never trained on**? That later test is the project's central target; v0.1 exists to build the experimental machinery without prematurely claiming learning or cognition.
-
-## Visual demo (v0.2)
-
-Start the local server:
-
-```bash
-python serve.py
-```
-
-Then open `http://localhost:8000`. Use **W/A/D** or arrow keys in HUMAN mode, **B** for BRAIN mode, **H** for HUMAN mode, and **R** for a new target.
-
-The v0.2 browser BRAIN mode intentionally mirrors `ToyBrain` only as a UI prototype. **It is not the future connectome execution path.** The next integration routes sensory observations to Python so the browser becomes visualization/embodiment only and the authoritative brain controller remains in Python.
+After learning separate object and destination relationships, can the connectome-driven agent execute a **novel combination it was never trained on**? That later test is the project's central target; the early milestones build the experimental machinery without prematurely claiming learning or cognition.
