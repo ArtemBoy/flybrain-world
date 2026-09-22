@@ -39,3 +39,15 @@ Long-term embodiment target: FlyGym 2.x. Connectome data will be pinned to a spe
 ## Core research question
 
 After learning separate object and destination relationships, can the connectome-driven agent execute a **novel combination it was never trained on**? That later test is the project's central target; v0.1 exists to build the experimental machinery without prematurely claiming learning or cognition.
+
+## Visual demo (v0.2)
+
+Start the local server:
+
+```bash
+python serve.py
+```
+
+Then open `http://localhost:8000`. Use **W/A/D** or arrow keys in HUMAN mode, **B** for BRAIN mode, **H** for HUMAN mode, and **R** for a new target.
+
+The v0.2 browser BRAIN mode intentionally mirrors `ToyBrain` only as a UI prototype. **It is not the future connectome execution path.** The next integration routes sensory observations to Python so the browser becomes visualization/embodiment only and the authoritative brain controller remains in Python.
